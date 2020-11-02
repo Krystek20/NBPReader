@@ -112,10 +112,11 @@ final class CurrencyListViewModel: CurrencyListViewModelType {
         }
     }
 
-    private func handleFetchedCurrencyList(with result: Result<CurrencyListWrapper<CurrencyList>, Error>) {
+    private func handleFetchedCurrencyList(with result: Result<[CurrencyList], Error>) {
         switch result {
-        case .success(let wrapper):
-            prepareCurrencyListViewData(from: wrapper.object)
+        case .success(let currencyList):
+            guard let firstList = currencyList.first else { return }
+            prepareCurrencyListViewData(from: firstList)
         case .failure(let error):
             handleError(error)
         }

@@ -139,10 +139,10 @@ final class CurrencyDetailViewModel: CurrencyDetailViewModelType {
         }
     }
 
-    private func handleFetchedCurrencyList(with result: Result<CurrencyListWrapper<CurrencyDetailList>, Error>) {
+    private func handleFetchedCurrencyList(with result: Result<CurrencyDetailList, Error>) {
         switch result {
-        case .success(let wrapper):
-            prepareCurrencyListViewData(from: wrapper.object)
+        case .success(let currencyDetailList):
+            prepareCurrencyListViewData(from: currencyDetailList)
         case .failure(let error):
             handleError(error)
         }
